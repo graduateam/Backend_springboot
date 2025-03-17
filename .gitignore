@@ -228,4 +228,12 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,gradle,macos,windows
 
-*.bin
+*.bin  # 바이너리 파일 제외
+
+# 필요하면 특정 .xml 파일은 제외하지 않도록 처리
+!pom.xml
+!application.xml
+
+# 특정 .lock 파일 유지
+!yarn.lock
+!package-lock.json
