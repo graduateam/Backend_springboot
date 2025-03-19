@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "User API", description = "API for managing users")
+@Tag(name = "User")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -19,18 +19,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @Operation(summary = "Create a new user", description = "Creates a new user with the provided details")
+    @Operation(summary = "회원 가입")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid user data")
     })
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userRequest) {
+        User user = new User();
+        user.setName(userRequest.getName());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(userRequest.getPassword());
         User createdUser = userService.createUser(user);
+
         return ResponseEntity.ok(createdUser);
     }
 
-    @Operation(summary = "Get user by email", description = "Retrieves a user by their email address")
+    @Operation(summary = "email로 유저 조회")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User found"),
             @ApiResponse(responseCode = "404", description = "User not found")
@@ -42,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @Operation(summary = "Update a user", description = "Updates an existing user by ID")
+    @Operation(summary = "유저 정보 수정")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User updated successfully"),
             @ApiResponse(responseCode = "404", description = "User not found")
@@ -55,14 +60,14 @@ public class UserController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    @Operation(summary = "Delete a user", description = "Deletes a user by ID")
+    @Operation(summary = "유저 탈퇴", description = "Deletes a user by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "User deleted successfully"),
             @ApiResponse(responseCode = "404", description = "User not found")
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(
-            @Parameter(description = "ID of the user to delete") @PathVariable Long id) {
+            @Parameter(description = "탈퇴하고자 하는 유저의 ID") @PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
