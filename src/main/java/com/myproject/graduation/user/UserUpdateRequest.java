@@ -32,12 +32,12 @@ public class UserUpdateRequest {
         this.email = email;
     }
 
-    public String getPpassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPpassword(String ppassword) {
-        this.password = ppassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public UserStatus getStatus() {
