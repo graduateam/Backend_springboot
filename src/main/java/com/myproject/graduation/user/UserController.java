@@ -25,11 +25,11 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Invalid user data")
     })
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userRequest) {
+    public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userCreate) {
         User user = new User();
-        user.setName(userRequest.getName());
-        user.setEmail(userRequest.getEmail());
-        user.setPassword(userRequest.getPassword());
+        user.setName(userCreate.getName());
+        user.setEmail(userCreate.getEmail());
+        user.setPassword(userCreate.getPassword());
         User createdUser = userService.createUser(user);
 
         return ResponseEntity.ok(createdUser);
@@ -55,8 +55,14 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(
             @Parameter(description = "ID of the user to update") @PathVariable Long id,
-            @RequestBody User user) {
+            @RequestBody UserUpdateRequest userUpdate) {
+        User user = new User();
+        user.setName(userUpdate.getName());
+        user.setEmail(userUpdate.getEmail());
+        user.setPassword(user.getPassword());
+        user.setStatus(user.getStatus());
         User updatedUser = userService.updateUser(id, user);
+
         return ResponseEntity.ok(updatedUser);
     }
 
