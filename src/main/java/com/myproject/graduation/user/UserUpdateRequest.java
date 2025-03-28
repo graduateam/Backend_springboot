@@ -1,20 +1,19 @@
 package com.myproject.graduation.user;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 
 public class UserUpdateRequest {
 
-    @Schema(description = "유저 이름", example = "John Doe")
-    @Size(min = 2, max = 10, message = "이름은 2글자 이상 10글자 미만으로 작성해주세요!")
+    @Schema(description = "유저 이름")
     private String name;
 
-    @Schema(description = "유저 이메일", example = "john@example.com")
-    @Email(message = "Email은 필수 사항입니다.")
+    @Schema(description = "유저 이메일")
     private String email;
 
-    @Schema(description = "유저 status", example = "ACTIVE")
+    @Schema(description = "유저 비밀번호")
+    private String password;
+
+    @Schema(description = "유저 status")
     private UserStatus status;
 
     public String getName() {
@@ -31,6 +30,14 @@ public class UserUpdateRequest {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public UserStatus getStatus() {
