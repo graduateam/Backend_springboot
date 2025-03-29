@@ -1,4 +1,4 @@
-package com.myproject.graduation.user;
+package com.myproject.graduation.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;

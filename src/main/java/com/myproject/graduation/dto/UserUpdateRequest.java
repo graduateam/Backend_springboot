@@ -1,5 +1,6 @@
-package com.myproject.graduation.user;
+package com.myproject.graduation.dto;
 
+import com.myproject.graduation.domain.UserStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class UserUpdateRequest {

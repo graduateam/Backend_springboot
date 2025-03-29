@@ -1,4 +1,4 @@
-package com.myproject.graduation;
+package com.myproject.graduation.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
