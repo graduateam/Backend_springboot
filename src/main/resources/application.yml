@@ -9,7 +9,7 @@
       hibernate:
         # 개발중에는, create, 배포시에는, update 나 none으로 설정 변경
         # `create`는 테스트 시 DB 초기화됨. CI에서는 `update`가 더 안전함
-        ddl-auto: update
+        ddl-auto: create
       show-sql: true  # sql 포멧팅 활성화
     logging:
       level:

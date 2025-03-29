@@ -1,4 +1,4 @@
-package com.myproject.graduation.user;
+package com.myproject.graduation.domain;
 
 public enum UserStatus {
     ACTIVE, INACTIVE

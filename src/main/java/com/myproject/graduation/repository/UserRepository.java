@@ -1,5 +1,6 @@
-package com.myproject.graduation.user;
+package com.myproject.graduation.repository;
 
+import com.myproject.graduation.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
