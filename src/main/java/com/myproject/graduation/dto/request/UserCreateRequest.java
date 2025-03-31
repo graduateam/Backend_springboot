@@ -1,4 +1,4 @@
-package com.myproject.graduation.dto;
+package com.myproject.graduation.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;

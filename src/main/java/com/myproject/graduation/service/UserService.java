@@ -2,8 +2,8 @@ package com.myproject.graduation.service;
 
 import com.myproject.graduation.domain.User;
 import com.myproject.graduation.domain.UserStatus;
-import com.myproject.graduation.dto.UserCreateRequest;
-import com.myproject.graduation.dto.UserUpdateRequest;
+import com.myproject.graduation.dto.request.UserCreateRequest;
+import com.myproject.graduation.dto.request.UserUpdateRequest;
 import com.myproject.graduation.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

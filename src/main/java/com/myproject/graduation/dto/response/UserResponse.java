@@ -1,4 +1,4 @@
-package com.myproject.graduation.dto;
+package com.myproject.graduation.dto.response;
 
 import com.myproject.graduation.domain.UserStatus;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,10 +1,10 @@
 package com.myproject.graduation.controller;
 
 import com.myproject.graduation.domain.User;
-import com.myproject.graduation.dto.UserCreateRequest;
-import com.myproject.graduation.dto.UserResponse;
+import com.myproject.graduation.dto.request.UserCreateRequest;
+import com.myproject.graduation.dto.response.UserResponse;
 import com.myproject.graduation.service.UserService;
-import com.myproject.graduation.dto.UserUpdateRequest;
+import com.myproject.graduation.dto.request.UserUpdateRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
