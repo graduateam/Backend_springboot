@@ -44,6 +44,12 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("입력하신 email의 계정을 찾을 수 없습니다.\n" + email));
     }
 
+    // ID로 유저 조회
+    public User findById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 id의 계정을 찾을 수 없습니다.\n" + id));
+    }
+
     // 유저 업데이트
     public User updateUser(Long id, UserUpdateRequest userUpdate) {
         User user = userRepository.findById(id)

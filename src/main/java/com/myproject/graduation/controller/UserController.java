@@ -1,10 +1,12 @@
 package com.myproject.graduation.controller;
 
 import com.myproject.graduation.domain.User;
+import com.myproject.graduation.domain.VideoData;
 import com.myproject.graduation.dto.request.UserCreateRequest;
 import com.myproject.graduation.dto.response.UserResponse;
 import com.myproject.graduation.service.UserService;
 import com.myproject.graduation.dto.request.UserUpdateRequest;
+import com.myproject.graduation.service.VideoDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,15 +16,19 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Tag(name = "User")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
+    private final VideoDataService videoDataService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, VideoDataService videoDataService) {
         this.userService = userService;
+        this.videoDataService = videoDataService;
     }
 
     @Operation(summary = "회원 가입", description = "이메일, 비밀번호, 이름을 입력하여 회원가입. ID는 DB에서 자동 생성되며, status는 기본적으로 ACTIVE로 설정됩니다.")
@@ -75,4 +81,30 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @Operation(summary = "유저 정보로 영상 처리 요청", description = "유저 정보를 Flask로 전송하고 영상 처리 데이터를 받아 저장합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "영상 처리 성공"),
+            @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없음")
+    })
+    @PostMapping("/{userId}/process-video")
+    public ResponseEntity<VideoData> processVideoData(
+            @Parameter(description = "영상 처리를 요청할 유저의 ID") @PathVariable Long userId) {
+        VideoData videoData = videoDataService.processVideoData(userId);
+        return ResponseEntity.ok(videoData);
+    }
+
+    @Operation(summary = "유저의 영상 처리 데이터 조회")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "영상 처리 데이터 조회 성공"),
+            @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없음")
+    })
+    @GetMapping("/{userId}/video-data")
+    public ResponseEntity<List<VideoData>> getVideoDataByUserId(
+            @Parameter(description = "영상 처리 데이터를 조회할 유저의 ID") @PathVariable Long userId) {
+        List<VideoData> videoDataList = videoDataService.getVideoDataByUserId(userId);
+        return ResponseEntity.ok(videoDataList);
+    }
+
+
 }
