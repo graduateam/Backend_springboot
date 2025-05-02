@@ -105,6 +105,4 @@ public class UserController {
         List<VideoData> videoDataList = videoDataService.getVideoDataByUserId(userId);
         return ResponseEntity.ok(videoDataList);
     }
-
-
 }

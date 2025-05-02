@@ -1,3 +1,6 @@
+flask:
+  api:
+    url: http://localhost:5000
 spring:
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
@@ -6,5 +9,10 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: create-drop # 테스트 시 스키마 자동 생성 및 삭제
-    database-platform: org.hibernate.dialect.H2Dialect # H2 Dialect 명시
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  main:
+    allow-bean-definition-overriding: true
+logging:
+  level:
+    org.springframework: DEBUG
