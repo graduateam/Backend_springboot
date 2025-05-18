@@ -59,12 +59,27 @@ public class VideoDataService {
         // 5. DB에 저장
         VideoData videoData = new VideoData();
         videoData.setUser(user);
-        videoData.setProcessedData(videoDataResponse.getProcessedData());
+        videoData.setVehicleId1(videoDataResponse.getVehicleId1());
+        videoData.setVehicleId2(videoDataResponse.getVehicleId2());
+        videoData.setLatitude(videoDataResponse.getLatitude());
+        videoData.setLongitude(videoDataResponse.getLongitude());
+        videoData.setTtc(videoDataResponse.getTtc());
         videoData.setProcessedAt(videoDataResponse.getProcessedAt());
         return videoDataRepository.save(videoData);
     }
 
     public List<VideoData> getVideoDataByUserId(Long userId) {
         return videoDataRepository.findByUserId(userId);
+    }
+
+    public VideoDataResponse getMockVideoDataResponse() {
+        VideoDataResponse response = new VideoDataResponse();
+        response.setVehicleId1(74);
+        response.setVehicleId2(92);
+        response.setLatitude(37.6768);
+        response.setLongitude(126.74585);
+        response.setTtc(2.8);
+        response.setProcessedAt(java.time.LocalDateTime.parse("2025-04-05T04:33:41.587"));
+        return response;
     }
 }

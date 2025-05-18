@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "video_data")
 @Getter
@@ -20,9 +22,21 @@ public class VideoData {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "processed_data", nullable = false, columnDefinition = "TEXT")
-    private String processedData;
+    @Column(name = "vehicle_id_1", nullable = false)
+    private int vehicleId1;
+
+    @Column(name = "vehicle_id_2", nullable = false)
+    private int vehicleId2;
+
+    @Column(name = "latitude", nullable = false)
+    private double latitude;
+
+    @Column(name = "longitude", nullable = false)
+    private double longitude;
+
+    @Column(name = "ttc", nullable = false)
+    private double ttc;
 
     @Column(name = "processed_at", nullable = false)
-    private String processedAt;
+    private LocalDateTime processedAt;
 }

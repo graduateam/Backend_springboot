@@ -23,6 +23,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/users/**",
+                                "/api/video/test-flask-response",
                                 "/swagger-ui/**",
                                 "/api-docs/**",
                                 "/swagger-ui.html",
